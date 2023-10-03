@@ -9,19 +9,10 @@ import {
 
 import { styles } from "./styles";
 import { Participant } from "../../components/Participant";
+import { useState } from "react";
 
 export function Home() {
-  const participants = [
-    "Rodrigo",
-    "Vini",
-    "Diego",
-    "Biro",
-    "Ana",
-    "Isa",
-    "Jack",
-    "Mayk",
-    "João",
-  ];
+  const [participants, setParticipant] = useState(["João"]);
 
   function handleParticipantAdd() {
     if (participants.includes("Rodrigo")) {
@@ -30,6 +21,8 @@ export function Home() {
         "já exite um participante na lista com esse nome "
       );
     }
+
+    setParticipant((previousState) => [...previousState, "Ana"]);
     console.log("Você clicou no botão de Adicionar!");
   }
 

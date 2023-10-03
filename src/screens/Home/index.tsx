@@ -12,17 +12,19 @@ import { Participant } from "../../components/Participant";
 import { useState } from "react";
 
 export function Home() {
-  const [participants, setParticipant] = useState(["João"]);
+  const [participants, setParticipant] = useState<string[]>([]);
+  const [participantName, setParticipantName] = useState("");
 
   function handleParticipantAdd() {
-    if (participants.includes("Rodrigo")) {
+    if (participants.includes(participantName)) {
       return Alert.alert(
         "Participante exiter",
         "já exite um participante na lista com esse nome "
       );
     }
 
-    setParticipant((previousState) => [...previousState, "Ana"]);
+    setParticipant((previousState) => [...previousState, participantName]);
+    setParticipantName("");
     console.log("Você clicou no botão de Adicionar!");
   }
 
@@ -52,6 +54,8 @@ export function Home() {
           style={styles.input}
           placeholder="Nome do participante"
           placeholderTextColor="#6B6B6B"
+          value={participantName}
+          onChangeText={setParticipantName}
         />
 
         <TouchableOpacity style={styles.button} onPress={handleParticipantAdd}>
